@@ -3,43 +3,43 @@ if exists('g:mapCommandOpLoaded') || (v:version < 700)
 endif
 let g:mapCommandOpLoaded = 1
 
-function! mapOp#createOp(command)
+function! foldOp#createOp(command)
     norm! gv
     execute "norm! " . a:command
-    call mapOp#popVis()
+    call foldOp#popVis()
 endfunction
-function! mapOp#mapOp(map, function)
-    exec 'nnoremap <silent>' . a:map . ' <esc>:call mapOp#pushVis()<cr>:set opfunc='. a:function.'<cr>g@'
+function! foldOp#foldOp(map, function)
+    exec 'nnoremap <silent>' . a:map . ' <esc>:call foldOp#pushVis()<cr>:set opfunc='. a:function.'<cr>g@'
 endfunction
-function! mapOp#pushVis()
-    let g:mapOp#VisualStart = getpos("'<")
-    let g:mapOp#VisualEnd = getpos("'>")
+function! foldOp#pushVis()
+    let g:foldOp#VisualStart = getpos("'<")
+    let g:foldOp#VisualEnd = getpos("'>")
 endfunction
-function! mapOp#popVis()
-    call setpos("'<", g:mapOp#VisualStart)
-    call setpos("'>", g:mapOp#VisualEnd)
+function! foldOp#popVis()
+    call setpos("'<", g:foldOp#VisualStart)
+    call setpos("'>", g:foldOp#VisualEnd)
 endfunction
-func! mapOp#zcOp(type)
-    call mapOp#createOp("zc")
+func! foldOp#zcOp(type)
+    call foldOp#createOp("zc")
 endfunction
-func! mapOp#zCOp(type)
-    call mapOp#createOp("zC")
+func! foldOp#zCOp(type)
+    call foldOp#createOp("zC")
 endfunction
-func! mapOp#zoOp(type)
-    call mapOp#createOp("zo")
+func! foldOp#zoOp(type)
+    call foldOp#createOp("zo")
 endfunction
-func! mapOp#zOOp(type)
-    call mapOp#createOp("zO")
+func! foldOp#zOOp(type)
+    call foldOp#createOp("zO")
 endfunction
-func! mapOp#zDOp(type)
-    call mapOp#createOp("zD")
+func! foldOp#zDOp(type)
+    call foldOp#createOp("zD")
 endfunction
 if (!exists("g:mapCommandOpNoDefaults")||!g:mapCommandOpNoDefaults)
-    call mapOp#mapOp("zc", "mapOp#zcOp")
-    call mapOp#mapOp("zC", "mapOp#zCOp")
-    call mapOp#mapOp("zo", "mapOp#zoOp")
-    call mapOp#mapOp("zO", "mapOp#zOOp")
-    call mapOp#mapOp("zD", "mapOp#zDOp")
+    call foldOp#foldOp("zc", "foldOp#zcOp")
+    call foldOp#foldOp("zC", "foldOp#zCOp")
+    call foldOp#foldOp("zo", "foldOp#zoOp")
+    call foldOp#foldOp("zO", "foldOp#zOOp")
+    call foldOp#foldOp("zD", "foldOp#zDOp")
     nnoremap zcc :norm! zc<cr>
     nnoremap zCC :norm! zC<cr>
     nnoremap zoo :norm! zo<cr>
