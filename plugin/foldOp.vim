@@ -14,10 +14,12 @@ endfunction
 function! foldOp#pushVis()
     let g:foldOp#VisualStart = getpos("'<")
     let g:foldOp#VisualEnd = getpos("'>")
+    let g:foldOp#CusorPos = getpos(".")
 endfunction
 function! foldOp#popVis()
     call setpos("'<", g:foldOp#VisualStart)
     call setpos("'>", g:foldOp#VisualEnd)
+    call setpos(".", g:foldOp#CusorPos)
 endfunction
 func! foldOp#zcOp(type)
     call foldOp#createOp("zc")
